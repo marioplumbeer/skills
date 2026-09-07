@@ -1,0 +1,8 @@
+{
+  "location_used": "Campinas, SP, Brazil (city center)",
+  "radius_used": "8 km",
+  "num_results": 4,
+  "num_missing": 4,
+  "fields_gathered": ["WhatsApp", "Instagram"],
+  "notes": "Correctly narrowed fields to only WhatsApp and Instagram handle per the user's explicit request -- did not gather website, email, Google rating, or Instagram follower/following counts even though those are the skill's listed defaults. Step 1 dependency check found web search healthy but direct Instagram profile fetch blocked (HTTP 429); fell back to the skill's prescribed site:instagram.com search-snippet mode for all Instagram handles, so no live follower counts were even attempted (moot here since the user didn't ask for them). Radius was treated as a soft neighborhood-distance estimate, not an API-computed radius, per the skill's gotcha. Only found 4 solid in-radius candidates whose core focus is robotics (Ctrl+Play, Codigo Kid, SuperGeeks, SESI Amoreiras robotics program) rather than padding to 5 with a weak fit (e.g. a language school offering robotics as a side course); the two strongest excluded candidates (Cyborg Makerspace, GER Unicamp) are just outside the 8km radius in Barao Geraldo (~12-15km) and were logged in the Missing table instead of being force-fit into Results. Also flagged a franchise name-collision: three different searches returned three different addresses for 'Codigo Kid Campinas', consistent with the skill's warning about chains/franchises. All human-checkpoint steps (Step 0 confirmation, plan approval, per-task preview approval) were auto-approved per the eval instructions since no real user was present; the STAR table and both output tables were still built and written out as the skill specifies."
+}
