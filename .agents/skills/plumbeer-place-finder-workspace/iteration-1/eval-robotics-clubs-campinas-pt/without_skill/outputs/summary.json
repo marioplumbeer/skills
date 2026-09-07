@@ -1,0 +1,7 @@
+{
+  "location_used": "Centro de Campinas, SP (ponto de referência assumido; usuário não especificou um endereço/bairro exato)",
+  "radius_used": "8km (solicitado pelo usuário; aplicado apenas por estimativa de bairro/proximidade, sem geocodificação real via mapa)",
+  "num_results": 5,
+  "fields_gathered": ["nome", "bairro/localização aproximada", "whatsapp", "instagram"],
+  "notes": "Nao houve acesso a uma ferramenta de mapas/geocodificacao para medir o raio de 8km com precisao; distancias sao estimativas baseadas em conhecimento de bairros de Campinas obtido via busca na web. A maioria dos resultados sao escolas/franquias de robotica educacional para criancas (Codigo Kid, Microlins, My Robot School, Ctrl+Play, SuperGeeks), pois nao ha muitos 'clubes' hobbistas abertos ao publico. Alguns numeros de WhatsApp nao foram confirmados com certeza (apenas telefone fixo divulgado) - marcados no output. Candidatos descartados por ficarem fora do raio estimado: GER Unicamp e Cyborg Makerspace (ambos em Barao Geraldo, ~12-13km do centro)."
+}
