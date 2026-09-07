@@ -1,0 +1,17 @@
+{
+  "location_used": "São Bernardo do Campo, SP (central area / adjoining neighborhoods: Centro, Assunção, Demarchi, Anchieta, Rudge Ramos) — no single geocoded center point was used, since no mapping/places API was available in this session",
+  "radius_used": "Not enforced programmatically (no Places/Maps API access); approximated by only including organizations whose found street addresses fall within central São Bernardo do Campo",
+  "num_results": 10,
+  "fields_gathered": [
+    "name",
+    "type/what_it_is",
+    "address",
+    "phone",
+    "whatsapp",
+    "instagram_handle",
+    "instagram_followers",
+    "website",
+    "email"
+  ],
+  "notes": "Used iterative WebSearch queries (Portuguese + English) plus WebFetch on organizations' own websites where accessible. Instagram profile pages returned HTTP 429 (rate-limited) on direct WebFetch, so most Instagram follower counts come from search-engine snippets and are labeled 'unverified/via search snippet' in the output rather than confirmed live. One clearly implausible AI-generated follower count (RoboFEI '9M') was identified as wrong and deliberately excluded rather than reported. Several organizations had no publicly findable email or WhatsApp and those fields are marked 'Not found' rather than fabricated. Two of the 10 entries are flagged as imperfect fits: 'Technik Robótica' is an industrial automation/training company rather than a hobbyist/student club, and 'Robomind Brasil' has no confirmed local (SBC) address/contact info, only a national brand presence. No Google Places/Maps API or Instagram Graph API was available, so radius accuracy and follower-count accuracy are both best-effort, not guaranteed."
+}
