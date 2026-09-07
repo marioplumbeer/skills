@@ -3,7 +3,7 @@ name: plumbeer-place-finder
 description: >-
   Find and profile local businesses or venues near a location for outreach,
   prospecting, or lead-gen: search a radius around a place (default São
-  Bernardo do Campo, 5km), rank the top N (default 10), and enrich each one
+  Bernardo do Campo, 10km), rank the top N (default 10), and enrich each one
   with WhatsApp number, Instagram handle plus follower/following counts,
   Google reviews rating, website, and email — via web search and Instagram
   by default, with room for other sources. Use this whenever the user asks
@@ -41,7 +41,7 @@ Collect these, using `AskUserQuestion` for the multi-select ones if it's availab
 
 | Input | Default |
 |---|---|
-| Location + radius | São Bernardo do Campo, SP, Brazil — 5 km |
+| Location + radius | São Bernardo do Campo, SP, Brazil — 10 km |
 | Top N results | 10 |
 | Sources | Web search, Instagram |
 | Information to gather | WhatsApp number, Instagram handle, Instagram followers/following, Google reviews rating, website, email |
@@ -81,7 +81,7 @@ A typical breakdown:
 
 1. **Discovery** — one task per selected source, searching the location+radius for the requested kind of place. Pull noticeably more than N candidates up front (exclusions and duplicates will shrink the pool) and de-duplicate by name/address across sources before counting toward N.
 2. **Enrichment** — group by where the data actually lives rather than one task per field: e.g. "visit each candidate's website/Instagram bio for WhatsApp, email, website" is one task even though it covers three fields; "look up each candidate's Google reviews rating" is its own task since it's a different lookup entirely.
-3. **Filtering** — apply mandatory fields and custom exclusion rules, sort the survivors, trim to top N.
+3. **Filtering** — apply mandatory fields and custom exclusion rules, sort the survivors, trim to top N. **If fewer than N genuine candidates survive, don't pad the Results table with weak or unconfirmed fits to reach N** — report the true count and route the best near-misses to Missing with the specific reason they didn't qualify (out of radius, wrong category, an unconfirmed field). A short, honest list beats a full one padded with a guess — this is the same "don't guess, report gaps" principle as the rest of the skill, applied to the count itself, not just individual fields.
 4. **Compile** — build the Results and Missing tables.
 
 Situation is the *why* ("need a seed list of candidate places before anything else can be enriched"), not a restatement of the task.
