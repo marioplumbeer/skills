@@ -1,0 +1,11 @@
+{
+  "eval_id": 1,
+  "eval_name": "robotics-clubs-campinas-pt",
+  "prompt": "quero uma lista de clubes de robótica em Campinas, raio de 8km, top 5, só quero whatsapp e instagram de cada um",
+  "assertions": [
+    "Uses Campinas, SP as the search location with an approximately 8km radius",
+    "Results table has at most 5 places",
+    "Only gathers WhatsApp and Instagram for each place — does not add website, email, or Google rating since the user didn't ask for them",
+    "Responds appropriately to the Portuguese request (understands it correctly, doesn't need clarification for something already stated)"
+  ]
+}

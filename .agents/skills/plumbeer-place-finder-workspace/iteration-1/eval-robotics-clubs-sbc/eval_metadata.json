@@ -1,0 +1,11 @@
+{
+  "eval_id": 0,
+  "eval_name": "robotics-clubs-sbc",
+  "prompt": "Find the top 10 robotics clubs within 5km of São Bernardo do Campo, SP. For each one get WhatsApp number, Instagram (with follower count), website, and email using web search and Instagram.",
+  "assertions": [
+    "Uses São Bernardo do Campo, SP as the search location with an approximately 5km radius",
+    "Results table has at most 10 places",
+    "For results, attempts to gather all four requested fields: WhatsApp number, Instagram handle + follower count, website, email",
+    "Places that are missing a requested field are reported with a specific reason (not silently dropped)"
+  ]
+}
