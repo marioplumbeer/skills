@@ -107,7 +107,13 @@ This preview-and-confirm loop is the main defense against the two failure modes 
 
 ## Step 4 — Compile the Results table
 
-Columns: place name, address/area, plus one column per selected information field, plus a "sources used" column noting where each piece of data came from (useful for spot-checking later).
+Columns: place name, address/area, plus one column per selected information field. No separate "sources" column — cite inline instead: **make each populated cell's value itself a hyperlink to the page it was actually read from**, e.g. a Markdown cell reads `[(11) 4368-0555](https://rbranco.com.br/contato)`, not a bare number with a footnote elsewhere. This keeps the citation attached to the exact fact it supports instead of one shared column nobody can map back to individual cells.
+
+Citation rules:
+- Link to the most specific page the value came from — a contact page over a homepage, the profile itself over a search-results page. Only fall back to a search-results-page link when that's genuinely the only place the value showed up.
+- If a value was confirmed by more than one source, cite the more authoritative one (the place's own site/profile over a directory listing or aggregator), and only mention the other inline if it disagreed.
+- Never invent or guess a URL — if you can't point to where a value actually came from, that's a sign it shouldn't be in the table as a confirmed fact.
+- A "Not found" cell has nothing to cite — leave it as plain text.
 
 Sort by whatever signal is most relevant to the request (Instagram followers, Google rating, or just discovery order) and trim to top N **after** exclusions — don't count excluded candidates toward N.
 
@@ -119,7 +125,7 @@ Every candidate that didn't make the Results table goes here, with a specific re
 - `Could not verify: <what blocked it>` — e.g. "Instagram blocked automated access to this profile."
 - `Duplicate of <other candidate>`.
 
-Include whatever partial info was already gathered for that candidate — a half-complete lead is still worth handing back, not silently discarding.
+Include whatever partial info was already gathered for that candidate — a half-complete lead is still worth handing back, not silently discarding. Cite it the same way as the Results table: the value itself links to where it came from, not a separate sources note.
 
 Update the STAR table's final Status column once both tables are built, and present all three tables together as the deliverable.
 
@@ -127,13 +133,14 @@ Update the STAR table's final Status column once both tables are built, and pres
 
 ## Output formats
 
-Default to rendering all three tables directly in chat as normal markdown tables — that's the "built-in" format and needs nothing extra.
+Default to rendering all three tables directly in chat as normal markdown tables — that's the "built-in" format and needs nothing extra. Chat and Markdown both render a cell's hyperlink natively, so citations just work.
 
 If the user wants an alternate format, offer:
-- **Markdown** — same tables, saved to a `.md` file.
-- **CSV** — Results and Missing as separate `.csv` files (STAR is a process log, not usually worth exporting).
-- **List** — a plain bullet list per place, one line per field.
-- **JSON** — an array of objects, one per place, keyed by field name; include a `status: "found" | "missing"` and, for missing entries, a `reason` key.
+- **Markdown** — same tables, saved to a `.md` file. Citations stay as in-cell links.
+- **XLSX** — Results and Missing as separate sheets, built with the `xlsx` skill. Use this instead of plain CSV whenever citations matter: a spreadsheet cell can carry a real hyperlink as metadata (the cell shows just the value, e.g. `(11) 4368-0555`, clickable through to its source) with no visible URL and no extra column — CSV has no equivalent.
+- **CSV** — only if the user specifically wants plain CSV over a spreadsheet. Since a CSV cell can't hold a real hyperlink, keep the citation in the same cell as plain text instead of adding a source column, e.g. `(11) 4368-0555 — https://rbranco.com.br/contato`.
+- **List** — a plain bullet list per place, one line per field, each line's value as a Markdown link.
+- **JSON** — an array of objects, one per place, keyed by field name; include a `status: "found" | "missing"` and, for missing entries, a `reason` key. Since JSON is key-value rather than tabular, a sibling `<field>_source` key per field (e.g. `whatsapp` + `whatsapp_source`) is the natural way to carry the citation — this isn't the "extra column" the other formats avoid, it's just how JSON expresses two facts about one field.
 
 Only generate the file(s) once the user asks for a specific format — don't produce every format speculatively.
 
